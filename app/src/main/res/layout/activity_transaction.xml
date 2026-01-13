@@ -57,7 +57,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Valor do lançamento"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="14sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -130,7 +130,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
                     android:text="Conta / Pessoa"
-                    android:textColor="@color/text_secondary"
+                    android:textColor="@color/text_primary"
                     android:textSize="12sp" />
 
                 <Spinner
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Cancelar"
-                    android:textColor="@color/text_secondary" />
+                    android:textColor="@color/text_primary" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
