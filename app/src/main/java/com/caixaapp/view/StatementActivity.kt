@@ -54,7 +54,7 @@ class StatementActivity : AppCompatActivity() {
     }
 
     private fun getPeopleForSpinner(): List<Person> {
-        return (listOf(Person("00", "FAMILIA", "Conta Familiar")) + controller.people).distinctBy { it.id }
+        return controller.people
     }
 
     private fun setupSpinner() {
