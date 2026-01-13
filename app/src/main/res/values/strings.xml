@@ -39,7 +39,13 @@
     <string name="current_balance_label">Saldo Atual</string>
     <string name="projected_balance_label">Previsão 30 Dias</string>
     <string name="trend_chart_title">Tendência de Saldo</string>
+    <string name="chart_pie_title">Proporção (Crédito x Débito)</string>
+    <string name="all_months">Todos</string>
     <string name="upcoming_vencimentos">Próximos Vencimentos</string>
+    
+    <!-- General & Login -->
+    <string name="app_subtitle">Fluxo de Caixa Pessoal</string>
+    <string name="login_prompt_text">Clique em Acessar Menu para iniciar.</string>
     
     <!-- Messages -->
     <string name="msg_export_empty">Não há lançamentos para exportar</string>

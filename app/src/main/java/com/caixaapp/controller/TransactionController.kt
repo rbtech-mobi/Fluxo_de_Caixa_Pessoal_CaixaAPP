@@ -1,12 +1,12 @@
 package com.caixaapp.controller
 
 import com.caixaapp.model.MonthlySummary
-import com.caixaapp.model.StatementItem
 import com.caixaapp.model.Transaction
 import com.caixaapp.model.TransactionType
 import com.caixaapp.repository.TransactionRepository
 import com.caixaapp.util.DateUtils
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class TransactionController(
     private val repository: TransactionRepository
@@ -20,7 +20,7 @@ class TransactionController(
     }
 
     suspend fun getStatement(personId: String, rateio: Map<String, Double>): StatementResult {
-        val items = buildStatementItems(personId, rateio)
+        val items = buildAdjustedTransactions(personId, rateio)
         val saldo = calculateSaldo(items)
         return StatementResult(items, saldo)
     }
@@ -28,9 +28,10 @@ class TransactionController(
     suspend fun getMonthlySummary(personId: String, rateio: Map<String, Double>): MonthlySummaryResult {
         val adjusted = buildAdjustedTransactions(personId, rateio)
         val now = LocalDate.now()
-        val months = (0..5).map { now.minusMonths(it.toLong()).withDayOfMonth(1) }.reversed()
+        val months = (-2..4).map { now.minusMonths(it.toLong()).withDayOfMonth(1) }.reversed()
+
         val summaries = months.map { month ->
-            val monthLabel = DateUtils.formatMonth(month)
+            val monthLabel = DateUtils.formatChartDate(month)
             val monthTransactions = adjusted.filter { it.data.month == month.month && it.data.year == month.year }
             val totalCredito = monthTransactions.filter { it.tipo == TransactionType.CREDITO }.sumOf { it.valor }
             val totalDebito = monthTransactions.filter { it.tipo == TransactionType.DEBITO }.sumOf { it.valor }

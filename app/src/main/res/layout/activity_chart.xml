@@ -6,145 +6,98 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <!-- 1. Header de Saúde Financeira -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/healthHeaderCard"
+    <!-- 1. Header Section -->
+    <View
+        android:id="@+id/headerBackground"
         android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/primary"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/menuTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/primary"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="4dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.LargeComponent">
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="48dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/trend_chart_title"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="@string/menu_dashboard_title"
+        android:textColor="#E0E7FF"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/menuTitle"
+        app:layout_constraintTop_toBottomOf="@id/menuTitle" />
+
+    <!-- Filter Card (Overlapping) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/filterCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/headerBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerBackground">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="24dp"
-            android:baselineAligned="false">
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Saldo Atual"
-                    android:textColor="#E0E7FF"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/textCurrentBalance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="R$ 0,00"
-                    android:textColor="@color/surface"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Previsão 30 Dias"
-                    android:textColor="#E0E7FF"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/textProjectedBalance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="R$ 0,00"
-                    android:textColor="@color/surface"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
-
-    <!-- Filtro (Spinner) -->
-    <Spinner
-        android:id="@+id/chartFilterSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/healthHeaderCard" />
-
-    <!-- 2. Área do Gráfico de Tendência -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/chartCard"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/surface"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="2dp"
-        app:layout_constraintTop_toBottomOf="@id/chartFilterSpinner">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="12dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif-medium"
-                android:text="Tendência de Saldo"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp" />
+                android:text="@string/filter_by_label"
+                android:textColor="@color/text_secondary" />
 
-            <!-- MPAndroidChart LineChart -->
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChart"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <Space
+                android:layout_width="8dp"
+                android:layout_height="0dp" />
+
+            <Spinner
+                android:id="@+id/chartFilterSpinner"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/primary" />
+
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- 3. Próximos Vencimentos -->
-    <TextView
-        android:id="@+id/labelUpcoming"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="Próximos Vencimentos"
-        android:textColor="@color/text_primary"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/chartCard" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/upcomingRecyclerView"
+    <!-- 2. Área do Gráfico de Barras -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/chartCard"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:clipToPadding="false"
-        android:paddingHorizontal="16dp"
-        android:paddingBottom="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/labelUpcoming"
-        tools:listitem="@android:layout/simple_list_item_2" />
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/surface"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/backToMenuButton"
+        app:layout_constraintTop_toBottomOf="@+id/filterCard">
 
-    <!-- Botão Flutuante ou Fixo para Voltar -->
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Botão  para Voltar -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/backToMenuButton"
         style="@style/Widget.Material3.Button.TonalButton"
