@@ -46,7 +46,7 @@ class TransactionActivity : AppCompatActivity() {
     }
 
     private fun setupPessoaSpinner() {
-        val labels = people.map { it.nome }
+        val labels = people.map { it.descricao }
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, labels)
         binding.pessoaSpinner.adapter = adapter
     }

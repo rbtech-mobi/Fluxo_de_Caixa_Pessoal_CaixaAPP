@@ -56,9 +56,13 @@ class StatementActivity : AppCompatActivity() {
         binding.statementRecycler.adapter = adapter
     }
 
+    private fun getPeopleForSpinner(): List<Person> {
+        return (listOf(Person("00", "FAMILIA", "Conta Familiar")) + people).distinctBy { it.id }
+    }
+
     private fun setupSpinner() {
-        val personNames = (listOf(Person("00", "FAMILIA")) + people).map { it.nome }
-        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personNames)
+        val personDescriptions = getPeopleForSpinner().map { it.descricao }
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, personDescriptions)
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.filterSpinner.adapter = spinnerAdapter
 
@@ -72,8 +76,8 @@ class StatementActivity : AppCompatActivity() {
     }
 
     private fun loadStatementForSelectedPerson() {
-        val selectedPersonName = binding.filterSpinner.selectedItem as String
-        val selectedPerson = (listOf(Person("00", "FAMILIA")) + people).find { it.nome == selectedPersonName }
+        val selectedPersonDescription = binding.filterSpinner.selectedItem as String
+        val selectedPerson = getPeopleForSpinner().find { it.descricao == selectedPersonDescription }
         val personId = selectedPerson?.id ?: TransactionController.FAMILIA_ID
 
         val rateio = JsonUtils.loadRateio(this)

@@ -28,6 +28,8 @@
     
     <!-- Statement -->
     <string name="statement_title">Extrato Detalhado</string>
+    <string name="statement_full_title">EXTRATO COMPLETO</string>
+    <string name="filter_by_label">Filtrar por:</string>
     <string name="balance_label">Saldo Atual</string>
     <string name="month_income_prefix">Entradas: %s</string>
     <string name="month_expense_prefix">Saídas: %s</string>
@@ -44,7 +46,7 @@
     <string name="msg_export_error">Erro ao exportar: %s</string>
     <string name="msg_transaction_saved">Lançamento salvo</string>
     <string name="msg_fill_required">Preencha todos os campos</string>
-    <string name="sbuttom">acessar_menu</string>
+    <string name="action_access_menu">Acessar Menu</string>
     <string name="seclogin_dis">Login Seguro Desabilitado</string>
     <string name="seclogin_enb">Login Seguro Habilitado</string>
 </resources>
